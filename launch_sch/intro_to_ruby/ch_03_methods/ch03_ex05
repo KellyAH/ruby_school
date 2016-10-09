@@ -1,0 +1,15 @@
+#Thursday, July 14, 2016
+#1) Edit the method in exercise #4 so that it does print words on the screen.
+#2) What does it return now?
+
+#1)
+def scream(words)
+  #add exclamation to end of words
+  #reassigns new value to words variable
+  words = words + "!!!!"
+
+  puts words # will print to screen the words variable value
+  #2) returns nil ('cause puts method always returns nil)
+end
+
+scream("Yippeee")

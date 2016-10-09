@@ -1,0 +1,25 @@
+#Thursday, July 14, 2016
+#https://launchschool.com/books/ruby/read/methods#exercises
+#Write a program that includes a method called multiply that takes two arguments and returns the product of the two numbers.
+
+def multiply(num1, num2)
+  puts "multiplying #{num1} times #{num2}"
+  product = num1 * num2
+  return product
+end
+
+def test_method_return(method)
+  puts method * 1
+end
+
+#get 1st number
+# puts "please input a number."
+# first_number = gets.chomp.to_i
+#
+# #get 2nd number
+# puts "please input another number."
+# secound_number = gets.chomp.to_i
+
+#multiply(first_number, secound_number)
+
+test_method_return(multiply(4, 5))

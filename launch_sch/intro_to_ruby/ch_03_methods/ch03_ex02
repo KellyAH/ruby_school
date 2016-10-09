@@ -1,0 +1,17 @@
+#Wednesday, July 13, 2016
+#https://launchschool.com/books/ruby/read/methods#exercises
+#What do the following expressions evaluate to?
+
+# 1. x = 2
+#instansiate variable x and assign Integer object with value of 2
+
+# 2. puts x = 2
+#Print to Screen a String of the value variable X is assigned to
+#return nil
+
+# 3. p name = "Joe"
+#
+# 4. four = "four"
+#
+# 5. print something = "nothing"
+
