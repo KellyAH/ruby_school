@@ -1,0 +1,24 @@
+#https://launchschool.com/books/ruby/read/variables#exercises
+# x = 0
+# #x is instansiated outside times loop
+# #x is assigned to iteger value of 0
+#
+# 3.times do
+#   x += 1
+# #inside loop: x = (0 + 1) * 3
+#   # x = 3
+# end
+# puts x
+
+#predict x = 3
+#CORRECT
+
+puts "________________________________"
+
+y = 0
+3.times do
+  y += 1
+  x = y
+end
+puts x
+#error on x , cause x is instansiated inside do loop and can only exist and be called inside the loop

@@ -1,0 +1,6 @@
+#Monday, July 11, 2016
+#https://launchschool.com/books/ruby/read/variables#exercises
+#Modify name.rb again so that it first asks the user for their first name, saves it into a variable, and then does the same for the last name. Then outputs their full name all at once.
+
+#SOLUTION:
+#already coded in: ch02_ex01_name.rb file.

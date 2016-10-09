@@ -1,0 +1,17 @@
+#Thursday, July 14, 2016
+#What will the following code print to the screen?
+
+def scream(words)
+  #add exclamation to end of words
+  #reassigns new value to words variable
+  words = words + "!!!!"
+  return  #PREDICTION: return nil or empty string?
+  puts words # this not executed - all lines after return statement are not executed.
+end
+
+scream("Yippeee")
+#PREDICTION: return nil or empty string? thus nothing printed to screen.
+
+###RESULT
+#no output printed to screen
+#nothing returned?
