@@ -16,19 +16,37 @@
 # puts "working"
 #require '~/school/ruby_school/ccsf/cs132a_ruby/assn_04/student'
 require_relative 'student'
+require_relative 'ccsfserver'
 
-puts "total pop: #{Student.total_population}"
-#create an instance for each user in the CS 132A class.
+# initizlize classes
+ccsf_data = CcsfServer.new
 
-a = [1, 2, 3, 4, 5, 6, 7]
+# get list of members
+members_list = ccsf_data.ruby_class
 
-john = Student.new(*a)
-puts john.user_name
 
-puts "total pop: #{Student.total_population}"
+# get student account data
+raw_student_data = ccsf_data.student_data
+p ccsf_data.account_data(members_list,raw_student_data)
 
-mary = Student.new(1, 2, 3, 4, 5, 6, 7)
+# a = Student.new
+# Student.total_population
 
-puts "total pop: #{Student.total_population}"
-
-# Populate each instance’s attributes with data derived from the student’s unique line in /etc/passwd
+#
+#
+#
+# puts "total pop: #{Student.total_population}"
+# #create an instance for each user in the CS 132A class.
+#
+# a = [1, 2, 3, 4, 5, 6, 7]
+#
+# john = Student.new(*a)
+# puts john.user_name
+#
+# puts "total pop: #{Student.total_population}"
+#
+# mary = Student.new(1, 2, 3, 4, 5, 6, 7)
+#
+# puts "total pop: #{Student.total_population}"
+#
+# # Populate each instance’s attributes with data derived from the student’s unique line in /etc/passwd

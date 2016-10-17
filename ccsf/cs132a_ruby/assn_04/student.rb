@@ -1,21 +1,18 @@
 class Student
 
-  # count of the number of student instances (REQUIRED ELE)
+  # track # of the number of student instances
   @@count = 0
 
-  # return total number of students
+  # return total number of students - class method
   def self.total_population
-    @@count
+    puts "total student population is: #{@@count}"
   end
-
-  # Add one addtional empty attribute to the Student class: mangled_gcos. The value for this attribute will be set later, so do not set it in the class.
-  @mangled_gcos = nil
 
   # create setters and getters for attributes
   #attr_reader :count    # read count value outside of class
   attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :directory, :shell
 
-  def initialize(user_name, password, uid, gid, gcos_field, directory, shell)
+  def initialize(*userdata)
   #def initialize(user_name, password, uid, gid, gcos_field, directory, shell)
     @user_name = user_name
     @password = password
@@ -27,6 +24,8 @@ class Student
 
     # Increment the @@count each time a new Student instance is created
     @@count += 1
+
+    @mangled_gcos = nil
   end
 
   # mangled_gcos() singleton/CLASS METHOD will alternate the case of each letter of the gcos_field data.
@@ -38,15 +37,14 @@ class Student
     characters.join
   end
 
+
+
   def display_data
     #build table
   end
 
 
-
-
-  # Create singleton methods for each Student instance: it will be named mangled_gcos.
-  #
+  # Create singleton methods for each Student instance: it will be named mangled_gcos
   def mangled_gcos(gcos_field_data)
     gcos = gcos_field_data.to_s
     @mangled_gcos = nil
@@ -68,6 +66,7 @@ class Student
     @mangled_gcos
   end
 end
+
 
 
 
