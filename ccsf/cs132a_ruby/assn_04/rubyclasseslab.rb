@@ -18,35 +18,21 @@
 require_relative 'student'
 require_relative 'ccsfserver'
 
-# initizlize classes
-ccsf_data = CcsfServer.new
-
-# get list of members
-members_list = ccsf_data.ruby_class
+#time how long code takes to run.
+t = Time.now
+start = t.to_f
 
 
-# get student account data
-raw_student_data = ccsf_data.student_data
-p ccsf_data.account_data(members_list,raw_student_data)
+# # initizlize classes
+# ccsf_data = CcsfServer.new
 
-# a = Student.new
-# Student.total_population
 
-#
-#
-#
-# puts "total pop: #{Student.total_population}"
-# #create an instance for each user in the CS 132A class.
-#
-# a = [1, 2, 3, 4, 5, 6, 7]
-#
-# john = Student.new(*a)
-# puts john.user_name
-#
-# puts "total pop: #{Student.total_population}"
-#
-# mary = Student.new(1, 2, 3, 4, 5, 6, 7)
-#
-# puts "total pop: #{Student.total_population}"
-#
-# # Populate each instance’s attributes with data derived from the student’s unique line in /etc/passwd
+ruby_classroom = Student.new
+# # ruby class user accounts
+# p @user_accounts
+p ruby_classroom.student_data
+
+
+# record how long code took to run
+finish = Time.now
+print "Program Elapsed time: #{(finish.to_f - start.to_f).to_s}"

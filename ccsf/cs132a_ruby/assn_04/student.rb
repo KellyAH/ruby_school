@@ -9,6 +9,7 @@ class Student
   end
 
   # create setters and getters for attributes
+  attr_reader :ruby_classroom_user_accounts
   #attr_reader :count    # read count value outside of class
   attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :directory, :shell
 
@@ -22,10 +23,37 @@ class Student
     @directory = directory
     @shell = shell
 
-    # Increment the @@count each time a new Student instance is created
-    @@count += 1
+    @@count += 1      # Increment the @@count each time a new Student instance is created
 
     @mangled_gcos = nil
+
+    @ruby_classroom_user_accounts
+  end
+
+  #get student data for ruby class
+  def student_data
+    # initizlize CcsfServer class
+    ccsf_data = CcsfServer.new
+
+    # save user_accounts instance var to new var
+    user_accounts = ccsf_data.user_accounts
+
+    # turn data into array of eles where delimiter is colon :
+    clean_user_account_data = user_accounts.map { |x| x.split(/:/) }
+
+    # turn data into a hash using 2 arrays for keys and values
+    keys = %w[user_name password uid gid gcos_field home_directory login_shell]
+
+    final_array_of_hashes = []
+
+    clean_user_account_data.each do |account_data|
+      hash = Hash.new
+      keys.each_with_index { |item, index| hash[item] = account_data[index] }
+      final_array_of_hashes << hash
+    end
+
+    # ruby class user accounts
+    @ruby_classroom_user_accounts = final_array_of_hashes
   end
 
   # mangled_gcos() singleton/CLASS METHOD will alternate the case of each letter of the gcos_field data.
@@ -36,13 +64,6 @@ class Student
     end
     characters.join
   end
-
-
-
-  def display_data
-    #build table
-  end
-
 
   # Create singleton methods for each Student instance: it will be named mangled_gcos
   def mangled_gcos(gcos_field_data)
@@ -67,36 +88,3 @@ class Student
   end
 end
 
-
-
-
-
-#get data from server
-#raw_data = "ahall1	xxx"
-#cleaned_up = raw_data.split(' ')
-#print cleaned_up
-
-#build hash w/ arrays to store data via iterate thru data from server
-#students_hash = cleaned_up.to_h
-
-#puts students_hash
-
-#{[john, xxx],[joe, xxx]}
-
-# iterate thru hash, pass to students class - counter
-
-#students.each { |student| Student.new()}
-
-#bob = Student.new("bob", "123", "111", "bgidlahblah", "bobb", "directory1", "shellx")
-#bob.cleanup_gcos(Gcos)
-#sally = Student.new("sally", "321", "222", "gidblah", "ssally", "directory2", "shelly")
-#sally.cleanup_gcos(Gcos)
- # joe.cleanup_gcos(Gcos)
-  #don.cleanup_gcos(Gcos)
-
-  #hash_data .each {|person| person.cleanup_gcos(Gcos)}
-
-#john = Student.new("sally", "321", "222", "gidblah", "ssally", "directory2", "shelly")
-#john.class_count
-
-#puts Student.class_count
