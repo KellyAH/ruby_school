@@ -9,65 +9,55 @@ class Student
   end
 
   # create setters and getters for attributes
-  attr_reader :ruby_classroom_user_accounts
-  #attr_reader :count    # read count value outside of class
-  attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :directory, :shell, :mangled_gcos, :number
+  #attr_reader :ruby_classroom_user_accounts
+  attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :home_directory, :login_shell, :mangled_gcos, :number
 
   def initialize(user_data_array_of_hashes)
+    @@count += 1      # Increment the @@count each time a new Student instance is created
 
+    @number = @@count
     @user_name = user_data_array_of_hashes["user_name"]
     @password = user_data_array_of_hashes["password"]
     @uid = user_data_array_of_hashes["uid"]
     @gid = user_data_array_of_hashes["gid"]
     @gcos_field = user_data_array_of_hashes["gcos_field"]
-    @directory = user_data_array_of_hashes["giddirectory"]
-    @shell = user_data_array_of_hashes["gidshell"]
-
-    @@count += 1      # Increment the @@count each time a new Student instance is created
-
+    @home_directory = user_data_array_of_hashes["home_directory"]
+    @login_shell = user_data_array_of_hashes["login_shell"]
     @mangled_gcos = nil
-    @number = @@count
 
-    @ruby_classroom_user_accounts
+    #@ruby_classroom_user_accounts
   end
 
   # return array of all data for a student object
-  def self.student_full_data(student_object, keys)
-    student_full_data = []
-    #FAILS##student_full_data << student_object.instance_variable_get(*keys)
-    # student_full_data << student_object.instance_variable_get(*keys)
-    # student_full_data << student_object.instance_variable_get("@number")
-    # student_full_data << student_object.instance_variable_get("@user_name")
-    keys.map {|v| student_object.send(v.to_sym) }
+  def self.put_student_variable_names_into_array(student_object)
+    student_object.instance_variables.map {|key| key.slice(1,key.length).to_s}
   end
 
-  # Create singleton methods for each Student instance: it will be named mangled_gcos
+  def put_student_values_in_array
+    instance_variables.map do |attribute|
+      instance_variable_get(attribute)
+    end
+  end
+
+  # modify gcos value
   def mangled_gcos(gcos_field_data)
     gcos = gcos_field_data.to_s
     @mangled_gcos = nil
 
-    # If the student’s gcos_field contains a space
     if gcos.include?(" ")
-      # capitalize all of the words in the gcos_field data.
-      # split string into array & capitalize each word, join together into a string
-      @mangled_gcos = gcos.split(/\s/).collect {|word| word.capitalize}.join(" ")
-      # If the student’s gcos_field contains a comma
-    elsif gcos.include?(',')
-      gcos_field_data.gsub(/,/," ").gsub(/-/," ")
-      # If the gcos_field does not contain any spaces
+      # clean up gcos data
+      @mangled_gcos = gcos.split(/\s|,/).collect {|word| word.capitalize.gsub("-"," ")}.join(" ")
     else
       # invoke mangled_gcos() singleton
       @mangled_gcos = Student.alternate_char_case(gcos_field_data)
     end
-
     @mangled_gcos
   end
 
-  # mangled_gcos() singleton/CLASS METHOD will alternate the case of each letter of the gcos_field data.
+  # singleton/CLASS METHOD - alternate letter case
   def self.alternate_char_case(string)
-    characters = string.split(//)
-    characters = characters.map.with_index do |char, index|
-      index.odd? ? char.upcase : char.downcase
+    characters = string.split(//).map.with_index do |char, index|
+      index.odd? ? char.downcase : char.upcase
     end
     characters.join
   end

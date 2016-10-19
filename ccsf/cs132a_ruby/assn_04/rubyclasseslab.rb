@@ -23,46 +23,29 @@ require_relative 'ccsfserver'
 t = Time.now
 start = t.to_f
 
-
-# # initizlize classes
+# initialize classes
 ccsf_data = CcsfServer.new
 user_data = ccsf_data.student_data_hash
 
-
-
 # create student objects
 students = []
-user_data.map {|hash| students << Student.new(hash) }
+# iterate thru student hashes, creating a new student object for each student.
+user_data.map { |hash| students << Student.new(hash) }
 
-puts "#{Student.total_population}"
-
-# puts "before"
-# p students
-
-# mangle gcos_field data for each student object
+# mangle gcos_field value for each student object
 students.each do |student|
   student.mangled_gcos = student.mangled_gcos(student.gcos_field)
 end
 
-# puts "After"
-# p students
-#
-# puts "After QQQQ"
-keys = students[0].instance_variables
-p keys
-p keys.class
-keys_as_strings = keys.map {|key| key.slice(1,key.length).to_s}
-#keys_as_strings = keys.map {|key| key.to_s}
-p keys_as_strings
-p keys_as_strings.class
+#students.each {|x| puts x.inspect}
 
-students.each {|student| p Student.student_full_data(student, keys_as_strings) }
+header = Student.put_student_variable_names_into_array(students[0])
+p header
+# make array of final student data to be fed into html table
+final_student_data = students.map { |student| student.put_student_values_in_array }
+p final_student_data
 
-
-#students.map {|student| student_full_data << student.instance_variable_get(*keys)}
-
-
-#student_table = htmltable.new.make_table(header_data, )
+#student_table = HtmlTable.new
 
 
 # record how long code took to run
