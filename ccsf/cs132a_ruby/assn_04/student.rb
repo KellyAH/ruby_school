@@ -11,58 +11,34 @@ class Student
   # create setters and getters for attributes
   attr_reader :ruby_classroom_user_accounts
   #attr_reader :count    # read count value outside of class
-  attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :directory, :shell
+  attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :directory, :shell, :mangled_gcos, :number
 
-  def initialize(*userdata)
-  #def initialize(user_name, password, uid, gid, gcos_field, directory, shell)
-    @user_name = user_name
-    @password = password
-    @uid = uid
-    @gid = gid
-    @gcos_field = gcos_field
-    @directory = directory
-    @shell = shell
+  def initialize(user_data_array_of_hashes)
+
+    @user_name = user_data_array_of_hashes["user_name"]
+    @password = user_data_array_of_hashes["password"]
+    @uid = user_data_array_of_hashes["uid"]
+    @gid = user_data_array_of_hashes["gid"]
+    @gcos_field = user_data_array_of_hashes["gcos_field"]
+    @directory = user_data_array_of_hashes["giddirectory"]
+    @shell = user_data_array_of_hashes["gidshell"]
 
     @@count += 1      # Increment the @@count each time a new Student instance is created
 
     @mangled_gcos = nil
+    @number = @@count
 
     @ruby_classroom_user_accounts
   end
 
-  #get student data for ruby class
-  def student_data
-    # initizlize CcsfServer class
-    ccsf_data = CcsfServer.new
-
-    # save user_accounts instance var to new var
-    user_accounts = ccsf_data.user_accounts
-
-    # turn data into array of eles where delimiter is colon :
-    clean_user_account_data = user_accounts.map { |x| x.split(/:/) }
-
-    # turn data into a hash using 2 arrays for keys and values
-    keys = %w[user_name password uid gid gcos_field home_directory login_shell]
-
-    final_array_of_hashes = []
-
-    clean_user_account_data.each do |account_data|
-      hash = Hash.new
-      keys.each_with_index { |item, index| hash[item] = account_data[index] }
-      final_array_of_hashes << hash
-    end
-
-    # ruby class user accounts
-    @ruby_classroom_user_accounts = final_array_of_hashes
-  end
-
-  # mangled_gcos() singleton/CLASS METHOD will alternate the case of each letter of the gcos_field data.
-  def self.mangled_gcos(string)
-    characters = string.split(//)
-    characters = characters.map.with_index do |char, index|
-      index.odd? ? char.upcase : char.downcase
-    end
-    characters.join
+  # return array of all data for a student object
+  def self.student_full_data(student_object, keys)
+    student_full_data = []
+    #FAILS##student_full_data << student_object.instance_variable_get(*keys)
+    # student_full_data << student_object.instance_variable_get(*keys)
+    # student_full_data << student_object.instance_variable_get("@number")
+    # student_full_data << student_object.instance_variable_get("@user_name")
+    keys.map {|v| student_object.send(v.to_sym) }
   end
 
   # Create singleton methods for each Student instance: it will be named mangled_gcos
@@ -81,10 +57,20 @@ class Student
       # If the gcos_field does not contain any spaces
     else
       # invoke mangled_gcos() singleton
-      @mangled_gcos = Student.mangled_gcos(gcos_field_data)
+      @mangled_gcos = Student.alternate_char_case(gcos_field_data)
     end
 
     @mangled_gcos
   end
+
+  # mangled_gcos() singleton/CLASS METHOD will alternate the case of each letter of the gcos_field data.
+  def self.alternate_char_case(string)
+    characters = string.split(//)
+    characters = characters.map.with_index do |char, index|
+      index.odd? ? char.upcase : char.downcase
+    end
+    characters.join
+  end
+
 end
 
