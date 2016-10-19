@@ -13,14 +13,11 @@ class CcsfServer
   #turn array returned from ruby_class_user_accounts into hash to be fed into Student class
   def student_data_hash
 
-    user_accounts = ruby_class_user_accounts
-
     # turn data into 2 Dim array containing arrays of eles where delimiter is colon :
-    clean_user_account_data = user_accounts.map { |x| x.split(/:/) }
+    clean_user_account_data = ruby_class_user_accounts.map { |x| x.split(/:/) }
 
     # turn data into a hash using 2 arrays for keys and values
     keys = %w[user_name password uid gid gcos_field home_directory login_shell]
-
     final_array_of_hashes = []
 
     clean_user_account_data.each do |account_data|
@@ -28,7 +25,6 @@ class CcsfServer
       keys.each_with_index { |item, index| hash[item] = account_data[index] }
       final_array_of_hashes << hash
     end
-
     final_array_of_hashes
   end
 
@@ -53,23 +49,15 @@ class CcsfServer
 
   # get group.txt file
   def ruby_group_raw_data
-    # manually fetch on server via: cat /etc/group | grep c74686
+    # when run on server
+    # glines = File.readlines('/etc/group')
     glines = File.readlines('data/group.txt')
-
-    ## REMOVE COMMENT WHEN CODE IS ON SERVER
-    #glines = File.readlines('/etc/group')
-    glines
   end
 
   # get passwd.txt file
   def all_accounts
-    # manually fetch on server via: cat /etc/passwd # gets ALL STUDENT DATA
-
-    ## COMMENT OUT WHEN CODE IS ON SERVER
+    # when run on server
+    # lines = File.readlines('/etc/passwd')
     lines = File.readlines('data/passwd.txt')
-
-    ## REMOVE COMMENT WHEN CODE IS ON SERVER
-    #lines = File.readlines(’/etc/passwd’)
-    lines
   end
 end

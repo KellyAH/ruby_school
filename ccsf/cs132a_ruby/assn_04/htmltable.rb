@@ -1,52 +1,35 @@
 class HtmlTable
 
   def initialize
-    html_table = ""
+    # Data cell tags
+    @data_separator = "\t\t<td>%s</td>\n"
+    @header_separator = "\t\t<th>%s</th>\n"
+
+    # Table tags
+    @table_close = "</table>"
   end
 
   def make_table(header_data, row_data)
-    html_table <<
-    puts "Content-type: text/html"
-    puts "<table>"
+    # Print table open tag & header row
+    puts "<table>\n"
     make_header(header_data)
-    make_row(student_data)
-    puts "</table>"
+    make_row(row_data)
   end
 
   def make_header(header_data)
-    header_data.each do |header|
-      make_html_header(header)
-    end
+    # Print header array as one with separator
+    puts "\t<tr>\n" + header_data.map {|x| @header_separator % x }.join('') + "</tr>"
   end
 
   def make_row(row_data)
-    make_html_data_row(row_data)
-  end
+  # Print each array as columns with separator
+    row_data.each do |a_row|
+      # Print the data in the array as a row, inserting the tags
+      puts "\t<tr>\n" + a_row.map {|x| @data_separator % x }.join('') + "\t</tr>\n"
 
-
-  private
-
-  def make_html_header(header_value)
-    puts "<th>#{header_value}</th>"
-  end
-
-  def make_html_data_row(data)
-
-    data.each do |value|
-      puts "<tr>"
-      make_html_data_cell
-      puts "</tr>"
+      # Print the closing table tag if a_row is the last row
+      puts @table_close + "\n" if a_row == row_data.last
     end
-
-  end
-
-
-  def make_html_data_cell(data)
-    puts "<tr>"
-    data.each do |value|
-      puts "<td>#{value}</td>"
-    end
-    puts "</tr>"
   end
 
 end
