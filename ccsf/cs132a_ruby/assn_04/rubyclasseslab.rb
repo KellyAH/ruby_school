@@ -9,14 +9,13 @@
 # URL: hills.ccsf.edu/~khong5/cs132a/rubyclasseslab.cgi
 #
 # puts "Content-type: text/html"
+
 #this is like </header> so apache knows to execute code after blank puts
 # puts
-#
-# Program code starts here....
 # invoke class files
 require_relative 'student'
 require_relative 'ccsfserver'
-require_relative 'keithhtmltable'
+require_relative 'htmltable'
 
 #time how long code takes to run.
 t = Time.now
@@ -43,7 +42,7 @@ header = Student.student_variable_names(students[0])
 final_student_data = students.map { |student| student.put_student_values_in_array }
 
 # create html table
-student_table = KeithHtmlTable.new
+student_table = HtmlTable.new
 student_table.make_table(header,final_student_data)
 
 # record how long code took to run
