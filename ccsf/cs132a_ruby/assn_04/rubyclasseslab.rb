@@ -17,7 +17,7 @@
 #require '~/school/ruby_school/ccsf/cs132a_ruby/assn_04/student'
 require_relative 'student'
 require_relative 'ccsfserver'
-#require_relative 'htmltable'
+require_relative 'keithhtmltable'
 
 #time how long code takes to run.
 t = Time.now
@@ -39,13 +39,14 @@ end
 
 #students.each {|x| puts x.inspect}
 
-header = Student.put_student_variable_names_into_array(students[0])
-p header
+header = Student.student_variable_names(students[0])
+#p header
 # make array of final student data to be fed into html table
 final_student_data = students.map { |student| student.put_student_values_in_array }
-p final_student_data
+#p final_student_data
 
-#student_table = HtmlTable.new
+student_table = KeithHtmlTable.new
+student_table.make_table(header,final_student_data)
 
 
 # record how long code took to run

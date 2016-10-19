@@ -9,12 +9,12 @@ class Student
   end
 
   # create setters and getters for attributes
-  #attr_reader :ruby_classroom_user_accounts
   attr_accessor :user_name, :password, :uid, :gid, :gcos_field, :home_directory, :login_shell, :mangled_gcos, :number
 
   def initialize(user_data_array_of_hashes)
     @@count += 1      # Increment the @@count each time a new Student instance is created
 
+    # student attributes
     @number = @@count
     @user_name = user_data_array_of_hashes["user_name"]
     @password = user_data_array_of_hashes["password"]
@@ -24,15 +24,14 @@ class Student
     @home_directory = user_data_array_of_hashes["home_directory"]
     @login_shell = user_data_array_of_hashes["login_shell"]
     @mangled_gcos = nil
-
-    #@ruby_classroom_user_accounts
   end
 
-  # return array of all data for a student object
-  def self.put_student_variable_names_into_array(student_object)
+  # put student object instacne variables into an array
+  def self.student_variable_names(student_object)
     student_object.instance_variables.map {|key| key.slice(1,key.length).to_s}
   end
 
+  # put student_values into an array
   def put_student_values_in_array
     instance_variables.map do |attribute|
       instance_variable_get(attribute)
