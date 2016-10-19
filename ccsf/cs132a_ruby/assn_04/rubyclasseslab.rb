@@ -5,7 +5,7 @@
 # File: rubyclasseslab.cgi
 # Desc: display the /etc/passwd information for all members of CS 132A as an HTML web page
 # Assigment: https://ccsf.instructure.com/courses/2612/assignments/23500
-# ex output: hills.ccsf.edu/~khong5/cs132a/rubyclasseslab.cgi
+# ex output: http://hills.ccsf.edu/~kfreedma/cs132a/labs/rubyclasseslab.cgi
 # URL: hills.ccsf.edu/~khong5/cs132a/rubyclasseslab.cgi
 #
 # puts "Content-type: text/html"
@@ -22,7 +22,7 @@ require_relative 'keithhtmltable'
 t = Time.now
 start = t.to_f
 
-# initialize classes
+# get data from ccsf server
 ccsf_data = CcsfServer.new
 user_data = ccsf_data.student_data_hash
 
@@ -36,17 +36,15 @@ students.each do |student|
   student.mangled_gcos = student.mangled_gcos(student.gcos_field)
 end
 
-#students.each {|x| puts x.inspect}
-
+#create header from student object attributes
 header = Student.student_variable_names(students[0])
-#p header
+
 # make array of final student data to be fed into html table
 final_student_data = students.map { |student| student.put_student_values_in_array }
-#p final_student_data
 
+# create html table
 student_table = KeithHtmlTable.new
 student_table.make_table(header,final_student_data)
-
 
 # record how long code took to run
 finish = Time.now
