@@ -3,14 +3,34 @@ class CcsfServer
   attr_reader :user_accounts
 
   def initialize
-    puts "initializing class CcsfServer..."
     ruby_group_raw_data
     all_accounts
     ruby_class_personnel
-    @user_accounts = ruby_class_user_accounts
-    puts "QQQQQ :  @user_accounts in initialize is: #{@user_accounts}"
+    @user_accounts = student_data_hash
   end
 
+
+  #turn array returned from ruby_class_user_accounts into hash to be fed into Student class
+  def student_data_hash
+
+    user_accounts = ruby_class_user_accounts
+
+    # turn data into 2 Dim array containing arrays of eles where delimiter is colon :
+    clean_user_account_data = user_accounts.map { |x| x.split(/:/) }
+
+    # turn data into a hash using 2 arrays for keys and values
+    keys = %w[user_name password uid gid gcos_field home_directory login_shell]
+
+    final_array_of_hashes = []
+
+    clean_user_account_data.each do |account_data|
+      hash = Hash.new
+      keys.each_with_index { |item, index| hash[item] = account_data[index] }
+      final_array_of_hashes << hash
+    end
+
+    final_array_of_hashes
+  end
 
   # return array of only user account data for ruby class personnel
   def ruby_class_user_accounts
@@ -31,8 +51,9 @@ class CcsfServer
     ruby_class_members = members.split(',')
   end
 
+  # get group.txt file
   def ruby_group_raw_data
-    # fetch on server via: cat /etc/group | grep c74686
+    # manually fetch on server via: cat /etc/group | grep c74686
     glines = File.readlines('data/group.txt')
 
     ## REMOVE COMMENT WHEN CODE IS ON SERVER
@@ -40,8 +61,9 @@ class CcsfServer
     glines
   end
 
+  # get passwd.txt file
   def all_accounts
-    # fetch on server via: cat /etc/passwd # gets ALL STUDENT DATA
+    # manually fetch on server via: cat /etc/passwd # gets ALL STUDENT DATA
 
     ## COMMENT OUT WHEN CODE IS ON SERVER
     lines = File.readlines('data/passwd.txt')
