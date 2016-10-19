@@ -1,0 +1,66 @@
+class CcsfServer
+
+  attr_reader :user_accounts
+
+  def initialize
+    ruby_group_raw_data
+    all_accounts
+    ruby_class_personnel
+    @user_accounts = student_data_hash
+  end
+
+
+  #turn array returned from ruby_class_user_accounts into hash to be fed into Student class
+  def student_data_hash
+
+    user_accounts = ruby_class_user_accounts
+
+    # turn data into 2 Dim array containing arrays of eles where delimiter is colon :
+    clean_user_account_data = user_accounts.map { |x| x.split(/:/) }
+
+    # turn data into a hash using 2 arrays for keys and values
+    keys = %w[user_name password uid gid gcos_field home_directory login_shell]
+
+    final_array_of_hashes = []
+
+    clean_user_account_data.each do |account_data|
+      hash = Hash.new
+      keys.each_with_index { |item, index| hash[item] = account_data[index] }
+      final_array_of_hashes << hash
+    end
+
+    final_array_of_hashes
+  end
+
+  # return array of only user account data for ruby class personnel
+  def ruby_class_user_accounts
+
+    # use splat on an array to deconstruct it so it can be fed into start_with? method
+    user_account_data = all_accounts.find_all { |lines| lines.start_with?(*ruby_class_personnel) }
+
+    # remove trailing new lines
+    clean_users = user_account_data.map { |x| x.strip }
+  end
+
+  #return array of all the members in the ruby class
+  def ruby_class_personnel
+    # clean up data
+    members = ruby_group_raw_data[0].split(':').slice(3).strip
+
+    # turn data into array of member names
+    ruby_class_members = members.split(',')
+  end
+
+  # get group.txt file
+  def ruby_group_raw_data
+    glines = File.readlines('/etc/group')
+    glines
+  end
+
+  # get passwd.txt file
+  def all_accounts
+    # manually fetch on server via: cat /etc/passwd # gets ALL STUDENT DATA
+    lines = File.readlines(’/etc/passwd’)
+    lines
+  end
+end
