@@ -2,14 +2,6 @@ class CcsfServer
 
   attr_reader :user_accounts
 
-  def initialize
-    ruby_group_raw_data
-    all_accounts
-    ruby_class_personnel
-    @user_accounts = student_data_hash
-  end
-
-
   #turn array returned from ruby_class_user_accounts into hash to be fed into Student class
   def student_data_hash
 
@@ -28,36 +20,39 @@ class CcsfServer
     final_array_of_hashes
   end
 
-  # return array of only user account data for ruby class personnel
+  #return array of only user account data for ruby class personnel
   def ruby_class_user_accounts
 
     # use splat on an array to deconstruct it so it can be fed into start_with? method
     user_account_data = all_accounts.find_all { |lines| lines.start_with?(*ruby_class_personnel) }
 
     # remove trailing new lines
-    clean_users = user_account_data.map { |x| x.strip }
+    user_account_data = user_account_data.map { |x| x.strip }
   end
 
   #return array of all the members in the ruby class
   def ruby_class_personnel
-    # clean up data
-    members = ruby_group_raw_data[0].split(':').slice(3).strip
+    # find group in group.txt
+    ruby_group = ruby_group_raw_data.find { |line| line.start_with?('c74686')}
+
+    # clean up group.txt file data
+     members = ruby_group.split(':').slice(3).strip
 
     # turn data into array of member names
-    ruby_class_members = members.split(',')
+    members = members.split(',')
   end
 
   # get group.txt file
   def ruby_group_raw_data
     # when run on server
     # glines = File.readlines('/etc/group')
-    glines = File.readlines('data/group.txt')
+    File.readlines('data/group.txt')
   end
 
   # get passwd.txt file
   def all_accounts
     # when run on server
     # lines = File.readlines('/etc/passwd')
-    lines = File.readlines('data/passwd.txt')
+    File.readlines('data/passwd.txt')
   end
 end

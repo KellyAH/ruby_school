@@ -6,7 +6,7 @@
 # Desc: display the /etc/passwd information for all members of CS 132A as an HTML web page
 # Assigment: https://ccsf.instructure.com/courses/2612/assignments/23500
 # ex output: http://hills.ccsf.edu/~kfreedma/cs132a/labs/rubyclasseslab.cgi
-# URL: hills.ccsf.edu/~khong5/cs132a/rubyclasseslab.cgi
+# URL: http://hills.ccsf.edu/~khong5/cs132a/cgi-bin/rubyclasseslab.cgi
 #
 # puts "Content-type: text/html"
 
@@ -37,9 +37,11 @@ end
 
 #create header from student object attributes
 header = Student.student_variable_names(students[0])
+header = header.map { |item|  item.capitalize}
 
 # make array of final student data to be fed into html table
 final_student_data = students.map { |student| student.put_student_values_in_array }
+
 
 # create html table
 student_table = HtmlTable.new
