@@ -1,0 +1,5 @@
+first_name,last_name,exam1,exam2,exam3, exam4
+Kimberly,Hill,95,98,92,95
+Risa,Shinnabe,90,85,89,93
+Ashley,Fisher,85,86,87,95
+Zhu,Ting,98,95,100,95

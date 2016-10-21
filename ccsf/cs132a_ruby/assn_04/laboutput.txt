@@ -1,0 +1,124 @@
+<table>
+	<tr>
+		<th>number</th>
+		<th>user_name</th>
+		<th>password</th>
+		<th>uid</th>
+		<th>gid</th>
+		<th>gcos_field</th>
+		<th>home_directory</th>
+		<th>login_shell</th>
+		<th>mangled_gcos</th>
+</tr>
+	<tr>
+		<td>1</td>
+		<td>kfreedma</td>
+		<td>x</td>
+		<td>5049</td>
+		<td>208</td>
+		<td>kfreedma</td>
+		<td>/users/kfreedma</td>
+		<td>/bin/bash</td>
+		<td>KfReEdMa</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>kkovalch</td>
+		<td>x</td>
+		<td>29913</td>
+		<td>506</td>
+		<td>kkovalch</td>
+		<td>/students/kkovalch</td>
+		<td>/bin/bash</td>
+		<td>KkOvAlCh</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>ahall1</td>
+		<td>x</td>
+		<td>34371</td>
+		<td>506</td>
+		<td>Alexander Hall</td>
+		<td>/students/ahall1</td>
+		<td>/bin/bash</td>
+		<td>Alexander Hall</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>azaytsev</td>
+		<td>x</td>
+		<td>36228</td>
+		<td>506</td>
+		<td>LexasanZ,CCSF cs160a,333-333-7777,415-555-5577</td>
+		<td>/students/azaytsev</td>
+		<td>/bin/bash</td>
+		<td>Lexasanz Ccsf Cs160a 333 333 7777 415 555 5577</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>sli325</td>
+		<td>x</td>
+		<td>38478</td>
+		<td>506</td>
+		<td>Shengtao Li,No office held,626-656-0418,626-656-0418</td>
+		<td>/students/sli325</td>
+		<td>/bin/bash</td>
+		<td>Shengtao Li No Office Held 626 656 0418 626 656 0418</td>
+	</tr>
+	<tr>
+		<td>6</td>
+		<td>rchen14</td>
+		<td>x</td>
+		<td>38832</td>
+		<td>506</td>
+		<td>rchen14</td>
+		<td>/students/rchen14</td>
+		<td>/bin/bash</td>
+		<td>RcHeN14</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td>kfeng4</td>
+		<td>x</td>
+		<td>40181</td>
+		<td>506</td>
+		<td>Sherlock Holmes,221B Baker Street</td>
+		<td>/students/kfeng4</td>
+		<td>/bin/bash</td>
+		<td>Sherlock Holmes 221b Baker Street</td>
+	</tr>
+	<tr>
+		<td>8</td>
+		<td>eblock4</td>
+		<td>x</td>
+		<td>42148</td>
+		<td>506</td>
+		<td>Eli Block</td>
+		<td>/students/eblock4</td>
+		<td>/bin/bash</td>
+		<td>Eli Block</td>
+	</tr>
+	<tr>
+		<td>9</td>
+		<td>khong5</td>
+		<td>x</td>
+		<td>42692</td>
+		<td>506</td>
+		<td>khong5</td>
+		<td>/students/khong5</td>
+		<td>/bin/bash</td>
+		<td>KhOnG5</td>
+	</tr>
+	<tr>
+		<td>10</td>
+		<td>ndosquec</td>
+		<td>x</td>
+		<td>42693</td>
+		<td>506</td>
+		<td>Natalia,no office,415 619 9434,415 619 9434</td>
+		<td>/students/ndosquec</td>
+		<td>/bin/bash</td>
+		<td>Natalia No Office 415 619 9434 415 619 9434</td>
+	</tr>
+</table>
+Program Elapsed time: 0.16521477699279785
