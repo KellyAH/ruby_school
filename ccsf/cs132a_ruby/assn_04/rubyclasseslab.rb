@@ -36,8 +36,7 @@ students.each do |student|
 end
 
 #create header from student object attributes
-header = Student.student_variable_names(students[0])
-header = header.map { |item|  item.capitalize}
+header = Student.student_variable_names(students[0]).map { |item| item.capitalize}
 
 # make array of final student data to be fed into html table
 final_student_data = students.map { |student| student.put_student_values_in_array }
