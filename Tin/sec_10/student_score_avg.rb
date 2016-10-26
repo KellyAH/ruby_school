@@ -22,9 +22,15 @@ student_hash.map {|student_hash| students << Tinstudent.new(student_hash)}
 
 #p students
 
-p students.map {|student| student.full_name}
+file_header = %w[student average_score]
+p file_header
 
-#.map {|student| student.first_name}
-#students.avg_test_score(raw_student_data)
+student_names =  students.map {|student| student.full_name}
 
-#p students.test_scores(raw_student_data)
+student_avg_scores =  students.map {|student| student.avg_test_score}
+
+file_data = student_names + student_avg_scores
+p file_data
+
+student_file_data = file_fetcher.turn_array_into_hash(file_header, file_data)
+p student_file_data

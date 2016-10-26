@@ -15,15 +15,12 @@ class Tinstudent
     @average_score = 0
   end
 
-  # get only test scores from array
-  def test_scores(array)
-    array[2..-1]
-  end
-
-  def avg_test_score(array)
-    count =  array.size
+  def avg_test_score
+    test_scores = [@exam1_score, @exam2_score, @exam3_score, @exam4_score]
+    test_scores = test_scores.map {|score| score.to_i}
+    count =  test_scores.size
     sum = 0
-    sum = array.each {|item| sum += item}
+    test_scores.each {|score| sum += score}
 
     @average_score = sum / count
   end
@@ -32,14 +29,14 @@ class Tinstudent
     @first_name + " " + @last_name
   end
 
-  def create_data_file(data)
-    require 'fileutils'
-
-    # create dir to store file
-    File.dirname('~/student_data')
-
-    file = File.new("student average scores", "a+")
-    file << data
-  end
+  # def create_data_file(data)
+  #   require 'fileutils'
+  #
+  #   # create dir to store file
+  #   File.dirname('~/student_data')
+  #
+  #   file = File.new("student average scores", "a+")
+  #   file << data
+  # end
 
 end
