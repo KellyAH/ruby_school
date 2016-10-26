@@ -9,4 +9,9 @@ class Tinstudent
   def full_name
 
   end
+
+  def create_data_file
+
+  end
+
 end

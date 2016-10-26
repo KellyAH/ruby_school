@@ -9,6 +9,4 @@ class DataGrabber
     array.map {|x| x.strip}
   end
 
-
-
 end
