@@ -1,3 +1,5 @@
+#   require 'fileutils'
+
 class Tinstudent
 # Responsabilities: handle the student data
 # Collaborators: class DataGrabber
@@ -17,9 +19,9 @@ class Tinstudent
 
   def avg_test_score
     test_scores = [@exam1_score, @exam2_score, @exam3_score, @exam4_score]
-    test_scores = test_scores.map {|score| score.to_i}
+    test_scores = test_scores.map {|score| score.to_f}
     count =  test_scores.size
-    sum = 0
+    sum = 0.0
     test_scores.each {|score| sum += score}
 
     @average_score = sum / count
@@ -30,7 +32,7 @@ class Tinstudent
   end
 
   # def create_data_file(data)
-  #   require 'fileutils'
+
   #
   #   # create dir to store file
   #   File.dirname('~/student_data')
