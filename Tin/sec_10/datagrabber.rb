@@ -2,11 +2,6 @@ class DataGrabber
 # Responsabilities: get file data, clean up file data
 # Collaborators:  class tinstudent
 
-  def initialize
-
-  end
-
-
   # returns array of file contents
   def file_data(file)
     data = File.readlines(file)
