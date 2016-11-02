@@ -66,6 +66,8 @@ end
 puts "TRIGGERED: NoMethodError is rescued."
 speak('Bunny')
 
+puts "-" * 10
+
 # ZeroDivisionError
 def divide(number, divisor)
   begin
@@ -78,4 +80,4 @@ end
 puts "TRIGGERED: ZeroDivisionError is rescued."
 puts divide(4, 0)
 
-puts "-" * 10
+
