@@ -1,0 +1,27 @@
+--| cs132a_ruby
+--| --| assn_01
+--| --| Filename: lab1.rb - Fize: 5193 - Created On: 2016-10-09 21:03:46 -0700
+--| --| assn_02
+--| --| Filename: arr2cols.rb - Fize: 3645 - Created On: 2016-10-09 21:03:46 -0700
+--| --| Filename: arr_methods.rb - Fize: 6097 - Created On: 2016-10-09 21:03:46 -0700
+--| --| assn_03
+--| --| --| files
+--| --| --| Filename: empty_file.txt - Fize: 0 - Created On: 2016-10-09 21:03:46 -0700
+--| --| --| Filename: oliver.txt - Fize: 15447 - Created On: 2016-10-09 21:03:46 -0700
+--| --| Filename: lab03.rb - Fize: 8591 - Created On: 2016-10-16 20:14:41 -0700
+--| --| assn_04
+--| --| Filename: ccsfserver.rb - Fize: 1805 - Created On: 2016-10-22 20:17:32 -0700
+--| --| --| data
+--| --| --| Filename: group.txt - Fize: 54319 - Created On: 2016-10-22 20:17:32 -0700
+--| --| --| Filename: passwd.txt - Fize: 294913 - Created On: 2016-10-18 20:55:57 -0700
+--| --| Filename: htmltable.rb - Fize: 915 - Created On: 2016-10-22 20:17:32 -0700
+--| --| Filename: lab04.zip - Fize: 86822 - Created On: 2016-10-25 18:28:00 -0700
+--| --| Filename: laboutput.txt - Fize: 2343 - Created On: 2016-10-25 18:28:00 -0700
+--| --| Filename: rubyclasseslab.cgi - Fize: 1576 - Created On: 2016-10-22 20:17:32 -0700
+--| --| Filename: rubyclasseslab.rb - Fize: 1618 - Created On: 2016-10-22 20:24:15 -0700
+--| --| Filename: student.rb - Fize: 1991 - Created On: 2016-10-18 23:36:44 -0700
+--| --| assn_05
+--| --| Filename: exceptions.rb - Fize: 1551 - Created On: 2016-11-06 20:58:41 -0800
+--| --| assn_06
+--| --| Filename: files.rb - Fize: 1948 - Created On: 2016-11-08 22:11:46 -0800
+--| --| Filename: wk11_output.txt - Fize: 0 - Created On: 2016-11-08 22:14:28 -0800
