@@ -9,6 +9,7 @@
 /spec/reports/
 /spec/examples.txt
 /test/tmp/
+.DS_Store
 /test/version_tmp/
 /tmp/
 
