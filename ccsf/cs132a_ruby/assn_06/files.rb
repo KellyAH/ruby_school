@@ -16,6 +16,8 @@ end
 # get directory contents & remove any entries that start with .
 def directory_contents(path)
 
+
+  puts "directory is: #{directory}"
   # get directory contents from path
   directory_contents = Dir.entries(path)
 

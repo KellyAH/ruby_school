@@ -9,7 +9,6 @@ class Player
   def initialize(name, balance = 0)
     @name = name
     @balance = balance
-    clothes = "bkah"
   end
 
   def list_player
