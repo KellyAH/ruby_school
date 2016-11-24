@@ -8,6 +8,18 @@ class Legs
 end
 
 
+classname = "Table"
+
+# use eval to define a class
+eval ("class #{classname} < Legs
+attr_accessor :width_inches, :length_inches
+# sets initial table attributes
+  def initialize
+    @width_inches = 5
+    @length_inches = 8
+  end
+end")
+
 # a child of base class Legs
 class Toy < Legs
 
@@ -83,17 +95,19 @@ end
 
 
 puts "-" * 30
+puts "INSTANTIATE CLASS CREATED VIA EVAL"
+puts "-" * 30
+desk = Table.new
+p desk
+puts "desk width is: #{desk.width_inches} inches"
+puts "desk length is: #{desk.length_inches} inches"
+
+
+puts "-" * 30
 puts "DISPLAY LOGIC FOR DETERMINING BACK HEIGHT"
 puts "-" * 30
 chair_base = Chair.new
-throne = chair_base.create_chair("gold", 10)
-p throne
-
-chair = chair_base.create_chair("wood", 50)
-p chair
-
-large_chair = chair_base.create_chair("stone", 88)
-p large_chair
+p chair_base
 
 puts "-" * 30
 puts "USE MISSING_METHOD METHOD AND instance_eval TO AUTO GENERATE METHOD IF IT IS NOT FOUND IN CLASSES"
