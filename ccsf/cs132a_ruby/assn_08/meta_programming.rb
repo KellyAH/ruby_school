@@ -1,58 +1,46 @@
 # base class
 class Legs
   attr_accessor :number_of_legs, :material
-end
-
-# child of base class Legs
-class Table < Legs
 
   def initialize
-    @number_of_legs = 4
-    @material = "wood"
+    @number_of_legs = 2
   end
-
-  def create_table(number_of_legs, material)
-    @number_of_legs = number_of_legs
-    @material = material
-    "a table was created with #{@number_of_legs} legs and made of #{@material}"
-  end
-
 end
 
-# # another child of base class Legs
-class Toy
-#
-#   def initialize
-#     @material = "wood"
-#   end
-#
-#   # #list of common animals & # of legs
-#   # animal_legs = {}
-#   # animal_legs[:cat] = 4
-#   # animal_legs[:catapiller] = 16
-#   # animal_legs[:octopus] = 8
-#
+
+# a child of base class Legs
+class Toy < Legs
+
+  def initialize(brand)
+    @brand_name = brand
+  end
+
 # auto generate methods at run time
-common_animals = %w[rabbit catapillar kangaroo]
+  common_animals = %w[octopus catapillar kangaroo]
 
-common_animals.each do |animal|
-  define_method("#{animal}_details") do |*args|
+  common_animals.each do |animal|
+    define_method("#{animal}_details") do |*args|
 
-    puts "creating: #{animal}"
-    puts "material: #{args[0]}"
-    puts "height: #{args[1]} inches"
+      p "creating: Toy #{animal}"
+      p "material: #{args[0]}"
+      p "number_of_legs: #{args[2]}"
+      p "height: #{args[1]} inches"
+      p "-" * 10
+    end
   end
+
+  # auto generate objects if method if it is not found in child nor parent classes
+  def method_missing(method_name, *args)
+    self.instance_eval "def #{method_name}(*args)
+      puts 'Creating #{method_name} method...'
+      puts 'instansiating class...'
+      new_toy = Toy.new(*args)
+      end"
+    self.send method_name, args
+  end
+
 end
 
-
-#   def create_animal_toy(type, name, number_of_legs, material)
-#     animal_name = type
-#     @number_of_legs = number_of_legs
-#     @material = material
-#
-#     puts "a toy #{animal_name} was created and it's name is #{name}. It has #{@number_of_legs} legs and is made of #{@material}."
-#   end
-end
 
 # another child of base class Legs
 class Chair < Legs
@@ -81,19 +69,12 @@ class Chair < Legs
     end
   end
 
-  #FIX IT
-  # def method_missing(method_name, *args)
-  #   if method_name.to_s =~ /create_.*/
-  #     Chair.send($1, *args)
-  #   else
-  #     super
-  #   end
-  # end
-
+  # auto generate method if it is not found in child nor parent classes
   def method_missing(method_name, *args)
     self.instance_eval "def #{method_name}(*args)
-      puts 'Creating #{method_name} method with these arguments.'
-      args.each {|a| p a.inspect }
+      puts 'Creating #{method_name} method...'
+      p 'made of material: #{args[0]}'
+      p 'height in inches: #{args[1]}'
       end"
     self.send method_name, args
   end
@@ -101,11 +82,9 @@ class Chair < Legs
 end
 
 
-
-
-
-desk = Table.new
-
+puts "-" * 30
+puts "DISPLAY LOGIC FOR DETERMINING BACK HEIGHT"
+puts "-" * 30
 chair_base = Chair.new
 throne = chair_base.create_chair("gold", 10)
 p throne
@@ -116,13 +95,27 @@ p chair
 large_chair = chair_base.create_chair("stone", 88)
 p large_chair
 
+puts "-" * 30
+puts "USE MISSING_METHOD METHOD AND instance_eval TO AUTO GENERATE METHOD IF IT IS NOT FOUND IN CLASSES"
+puts "-" * 30
+chair_base.create_santa_chair("red wool", 88)
+chair_base.create_iron_throne("swords of my fallen enemies", 100)
 
-# invoke methods that aren't defined in class
-# method_missing will be triggered and auto create methods
-p chair_base.create_santa_chair("red fur", 88)
 
+puts "-" * 30
+puts "USE DEFINE_METHOD METHOD TO AUTO GENERATE METHODS AT RUN TIME"
+puts "-" * 30
 
+puts "create base toy"
+toy = Toy.new("mattel")
+p toy
 
-toy = Toy.new
-p toy.rabbit_details("pine", 33)
-p toy.kangaroo_details("iron", 88)
+puts "-" * 10
+toy.octopus_details("pine", 33, 8)
+toy.kangaroo_details("iron", 88, 2)
+toy.catapillar_details("plastic", 33, 16)
+
+puts "-" * 10
+puts "create another toy object via instance_eval"
+unbranded_toy = toy.create_unbranded_toy("Not Branded")
+p unbranded_toy

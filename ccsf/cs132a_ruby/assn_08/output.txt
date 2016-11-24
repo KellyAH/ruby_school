@@ -1,0 +1,41 @@
+------------------------------
+DISPLAY LOGIC FOR DETERMINING BACK HEIGHT
+------------------------------
+"a chair was created with 4 legs 10 inches tall, made of gold, with a low back height."
+"a chair was created with 4 legs 50 inches tall, made of wood, with a mid back height."
+"a chair was created with 4 legs 88 inches tall, made of stone, with a high back height."
+------------------------------
+USE MISSING_METHOD METHOD AND instance_eval TO AUTO GENERATE METHOD IF IT IS NOT FOUND IN CLASSES
+------------------------------
+Creating create_santa_chair method...
+"made of material: red wool"
+"height in inches: 88"
+Creating create_iron_throne method...
+"made of material: swords of my fallen enemies"
+"height in inches: 100"
+------------------------------
+USE DEFINE_METHOD METHOD TO AUTO GENERATE METHODS AT RUN TIME
+------------------------------
+create base toy
+#<Toy:0x007ffb230e7ad8 @brand_name="mattel">
+----------
+"creating: Toy octopus"
+"material: pine"
+"number_of_legs: 8"
+"height: 33 inches"
+"----------"
+"creating: Toy kangaroo"
+"material: iron"
+"number_of_legs: 2"
+"height: 88 inches"
+"----------"
+"creating: Toy catapillar"
+"material: plastic"
+"number_of_legs: 16"
+"height: 33 inches"
+"----------"
+----------
+create another toy object via instance_eval
+Creating create_unbranded_toy method...
+instansiating class...
+#<Toy:0x007ffb230e6520 @brand_name=["Not Branded"]>
