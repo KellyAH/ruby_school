@@ -16,9 +16,6 @@ url = URI.parse('http://hills.ccsf.edu/~dputnam/cs132a/form.cgi')
 # reads the content of the URL
 response = Net::HTTP.get_response(url)
 
-#puts "QQQQQ : response is: #{response}"
-#puts "QQQQQ : response body is: #{response.body}"
-
 # create uri_content.html file.
 result_file = File.new("uri_content.html", "w+")
 result_file.close
@@ -26,7 +23,3 @@ result_file.close
 # open uri_content.html file.
 # write to the uri_content.html file.
 File.open("uri_content.html", "a+") { |file| file.write(response.body) }
-
-
-# read file to check contents
-puts File.read("uri_content.html")
