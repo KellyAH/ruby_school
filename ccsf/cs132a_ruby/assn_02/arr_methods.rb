@@ -60,7 +60,7 @@ puts "-" * 8
 
 # contains the rest of the elements in the original array.
 arr2 = array_of_chars.slice(first_third_of_array..-1)
-puts "The contents of arr2 is: #{arr1}"
+puts "The contents of arr2 is: #{arr2}"
 puts "arr2 contains #{arr2.length} items."
 
 
@@ -135,7 +135,6 @@ arr1.insert(101, clean_arr2)
 puts "arr1 now contains the modified arr2: #{arr1}"
 puts "arr1 now contains #{arr1.size} elements"
 
-
 puts "-" * 8
 puts "TASK 09"
 puts "-" * 8
@@ -152,6 +151,9 @@ clean_arr1 = arr1.collect{|x| x.strip}
 
 arr1 = clean_arr1
 
+puts "arr1 cleaned up contains: #{arr1}"
+puts "arr1 cleaned up contains #{arr1.size} elements."
+
 # remove empty strings from array
 puts "arr1 before delete empty string contains: #{arr1}"
 arr1.delete("")
@@ -159,7 +161,6 @@ puts "arr1 after delete empty string #{arr1.size} elements"
 
 puts "arr1 cleaned up contains: #{arr1}"
 puts "arr1 cleaned up contains #{arr1.size} elements."
-
 
 puts "-" * 8
 puts "TASK 10"
