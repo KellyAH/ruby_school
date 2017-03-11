@@ -1,5 +1,6 @@
-# Collaborator who added vast improvements: iamthepanda
-# Date: 3/11/17
+#!/usr/local/bin/ruby
+# Name: Kelly Hong
+# Date: Wednesday, September 14, 2016
 # File: arr2cols.rb
 # Desc: write a Ruby script named arr2cols.rb that prints an array’s contents as formatted rows and columns.
 #       Example tables: escargot_player_data, employees, and artists
@@ -7,6 +8,10 @@
 #
 # ASSN URL: https://ccsf.instructure.com/courses/2612/assignments/21798
 # ex output: http://hills.ccsf.edu/~kfreedma/cs132a/lab2.cgi
+
+#time how long code takes to run.
+t = Time.now
+start = t.to_f
 
 puts "-" * 8
 puts "SETUP - CREATE ARRAYS"
@@ -96,31 +101,42 @@ artists = [
 ]
 
 # create dimensional array
-all_arrays = [
-  [escargot_player_data, "Table 1: Escargot Players Data"], 
-  [employees, "Table 2: Employees"], 
-  [artists, "Table 3: Artist Addresses and Income"]
-]
+all_arrays = [ escargot_player_data, employees, artists ]
 
-all_arrays.each do |array|
-  puts array.last()
-
-  maxVal = []
-  array.first().each do |row|
-    row.each_with_index do |col, i|
-      maxVal[i] = [maxVal.at(i) || 0, col.to_s.length].max
-    end
-  end
-
-  # Iterate thru element in all_arrays which contains Data.
-  # Print each row in colMax-space columns using String#%.
-  array.first().each do |arr|
-  # left justified with %-<value>s for readability
-    arr.zip(maxVal) do |item, colMax| 
-      printf("%-#{colMax + 2}s" , item)
-    end
-    puts
-  end
-
+puts "Table 1: Escargot Players Data"
+# Iterate thru 1st element in all_arrays which contains Escargot Players Data.
+# Print each row in 14-space columns using String#%.
+all_arrays[0].each do |arr|
+# added "|" to printf so rows a little easier to read.
+# left justified with %-<value>s for readability
+  arr.each {|item| printf("%-14s" , item) }
   puts
 end
+
+puts
+
+puts "Table 2: Employees"
+# Iterate thru 2nd element in all_arrays which contains Employees Data.
+# Print each row in 14-space columns using String#%.
+all_arrays[1].each do |arr|
+# added "|" to printf so rows a little easier to read.
+# left justified with %-<value>s for readability
+  arr.each {|item| printf("%-26s" , item) }
+  puts
+end
+
+puts
+
+puts "Table 3: Artist Addresses and Income"
+# Iterate thru 3nd element in all_arrays which contains Table 3: Artist Addresses and Income Data.
+# Print each row in 14-space columns using String#%.
+all_arrays[2].each do |arr|
+# added "|" to printf so rows a little easier to read.
+# left justified with %-<value>s for readability
+  arr.each {|item| printf("%-22s" , item) }
+  puts
+end
+
+# record how long code took to run
+finish = Time.now
+print "Program Elapsed time: #{(finish.to_f - start.to_f).to_s}"
