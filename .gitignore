@@ -1,6 +1,7 @@
 /idea/*
 .idea/*
 *.gem
+*.DS_Store
 *.rbc
 /.config
 /coverage/
@@ -9,7 +10,6 @@
 /spec/reports/
 /spec/examples.txt
 /test/tmp/
-.DS_Store
 /test/version_tmp/
 /tmp/
 
