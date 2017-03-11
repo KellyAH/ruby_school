@@ -118,7 +118,7 @@ all_arrays.each do |array|
   array.first().each do |arr|
   # left justified with %-<value>s for readability
     arr.zip(maxVal) do |item, colMax| 
-      printf("%-" + (colMax + 2).to_s + "s" , item)
+      printf("%-#{colMax + 2}s" , item)
     end
     puts
   end
