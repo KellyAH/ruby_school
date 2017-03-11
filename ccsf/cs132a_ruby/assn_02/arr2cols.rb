@@ -1,6 +1,5 @@
-#!/usr/local/bin/ruby
-# Name: Kelly Hong
-# Date: Wednesday, September 14, 2016
+# Collaborator who added vast improvements: iamthepanda
+# Date: 3/11/17
 # File: arr2cols.rb
 # Desc: write a Ruby script named arr2cols.rb that prints an array’s contents as formatted rows and columns.
 #       Example tables: escargot_player_data, employees, and artists
