@@ -97,38 +97,31 @@ artists = [
 ]
 
 # create dimensional array
-all_arrays = [ escargot_player_data, employees, artists ]
+all_arrays = [
+  [escargot_player_data, "Table 1: Escargot Players Data"], 
+  [employees, "Table 2: Employees"], 
+  [artists, "Table 3: Artist Addresses and Income"]
+]
 
-puts "Table 1: Escargot Players Data"
-# Iterate thru 1st element in all_arrays which contains Escargot Players Data.
-# Print each row in 14-space columns using String#%.
-all_arrays[0].each do |arr|
-# added "|" to printf so rows a little easier to read.
-# left justified with %-<value>s for readability
-  arr.each {|item| printf("%-14s" , item) }
+all_arrays.each do |array|
+  puts array.last()
+
+  maxVal = []
+  array.first().each do |row|
+    row.each_with_index do |col, i|
+      maxVal[i] = [maxVal.at(i) || 0, col.to_s.length].max
+    end
+  end
+
+  # Iterate thru element in all_arrays which contains Data.
+  # Print each row in colMax-space columns using String#%.
+  array.first().each do |arr|
+  # left justified with %-<value>s for readability
+    arr.zip(maxVal) do |item, colMax| 
+      printf("%-#{colMax + 2}s" , item)
+    end
     puts
-end
+  end
 
-puts
-
-puts "Table 2: Employees"
-# Iterate thru 2nd element in all_arrays which contains Employees Data.
-# Print each row in 14-space columns using String#%.
-all_arrays[1].each do |arr|
-# added "|" to printf so rows a little easier to read.
-# left justified with %-<value>s for readability
-    arr.each {|item| printf("%-26s" , item) }
-    puts
-end
-
-puts
-
-puts "Table 3: Artist Addresses and Income"
-# Iterate thru 3nd element in all_arrays which contains Table 3: Artist Addresses and Income Data.
-# Print each row in 14-space columns using String#%.
-all_arrays[2].each do |arr|
-# added "|" to printf so rows a little easier to read.
-# left justified with %-<value>s for readability
-    arr.each {|item| printf("%-22s" , item) }
-    puts
+  puts
 end
