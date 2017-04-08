@@ -17,8 +17,7 @@ def palindrome?(string)
   i = 0
   j = string.length - 1
 
-  # continue checking until both iterators have reached the middle of the string
-  # it is okay to neglect the middle element in an odd length string
+  # continue checking one of the iterators overtakes the other
   while i < j
 
     # these two while loops will increment/decrement the iterators if they encounter a non-alphabet character
