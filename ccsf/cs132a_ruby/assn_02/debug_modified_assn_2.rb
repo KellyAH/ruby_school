@@ -1,5 +1,6 @@
-# Collaborator who added vast improvements: iamthepanda
-# Date: 3/11/17
+#!/usr/local/bin/ruby
+# Name: Kelly Hong
+# Date: Wednesday, September 14, 2016
 # File: arr2cols.rb
 # Desc: write a Ruby script named arr2cols.rb that prints an array’s contents as formatted rows and columns.
 #       Example tables: escargot_player_data, employees, and artists
@@ -7,6 +8,11 @@
 #
 # ASSN URL: https://ccsf.instructure.com/courses/2612/assignments/21798
 # ex output: http://hills.ccsf.edu/~kfreedma/cs132a/lab2.cgi
+
+#time how long code takes to run.
+t = Time.now
+start = t.to_f
+
 
 puts "-" * 8
 puts "SETUP - CREATE ARRAYS"
@@ -97,9 +103,9 @@ artists = [
 
 # create dimensional array
 all_arrays = [
-  [escargot_player_data, "Table 1: Escargot Players Data"], 
-  [employees, "Table 2: Employees"], 
-  [artists, "Table 3: Artist Addresses and Income"]
+    [escargot_player_data, "Table 1: Escargot Players Data"],
+    [employees, "Table 2: Employees"],
+    [artists, "Table 3: Artist Addresses and Income"]
 ]
 
 all_arrays.each do |array|
@@ -107,16 +113,36 @@ all_arrays.each do |array|
 
   maxVal = []
   array.first().each do |row|
-    row.each_with_index do |col, i|
-      maxVal[i] = [maxVal.at(i) || 0, col.to_s.length].max
+    row.each_with_index do |item, index|
+      puts "row :#{row}"
+      puts "item :#{item}, at index:#{index}, has length: #{item.to_s.length}"
+      # determine which
+      # create array containing the length of each item in the data array
+      # set maxVal to a new array that
+      # fetch data in maxVal at the same index as the data row's index, if it is nil, then false is returned and 2nd condition is checked, and 0 is set for array
+      # 1st row iteration
+      # [0,3].max
+      # maxVal = [3]
+      #
+      # [0,8].max
+      # maxVal = [3,8]
+      #
+      # [0,2].max
+      # maxVal = [3,8,2]
+      # 2nd row iteration
+      #maxVal = [3,8,2]
+      # [3,8].max
+      #maxVal = [8,8,2]
+      maxVal[index] = [maxVal.at(index) || 0, item.to_s.length].max
+
     end
   end
-
+  puts "maxVal: #{maxVal}"
   # Iterate thru element in all_arrays which contains Data.
   # Print each row in colMax-space columns using String#%.
   array.first().each do |arr|
-  # left justified with %-<value>s for readability
-    arr.zip(maxVal) do |item, colMax| 
+    # left justified with %-<value>s for readability
+    arr.zip(maxVal) do |item, colMax|
       printf("%-#{colMax + 2}s" , item)
     end
     puts
@@ -124,3 +150,7 @@ all_arrays.each do |array|
 
   puts
 end
+
+# record how long code took to run
+finish = Time.now
+print "Program Elapsed time: #{(finish.to_f - start.to_f).to_s}"
