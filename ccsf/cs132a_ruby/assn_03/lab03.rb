@@ -34,13 +34,12 @@ def palindrome?(string)
     end
 
     # we must increment and decrement the indices at the end of the while loop
-    # i and j will eventually reach the middle of the string and break the loop
+    # i and j will eventually overlap and break the loop
     i += 1
     j -= 1
   end
-
-  # no need for return keyword, but you might consider using return keyword if you encounter strange behavior
-  true
+  
+  return true
 end
 
 palindromes = [
