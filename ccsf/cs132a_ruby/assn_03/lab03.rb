@@ -10,7 +10,6 @@ puts "EX: 01: palindrome?()"
 puts "-" * 8
 
 # create palindrome funct that returns boolean
-# check if a string is a palindrome
 # this implementation does not require the additional memory to reverse the string. should theoretically be ~2 times faster
 def palindrome?(string)
   # initialize two iterators at each end of the string
